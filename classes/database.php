@@ -45,7 +45,7 @@ class Database
         $rand = '';
         $rand_count = rand(0, $max);
         for ($i = 0; $i < $rand_count; ++$i) {
-            $r = rand(0, 9);
+            $r = rand(4, 9);
             $rand .= $r;
         }
 

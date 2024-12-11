@@ -8,6 +8,7 @@
 <body>
     <div class="signup_wrapper">
         <div class="signup_header">Signup</div>
+        <div id="error"></div>
         <form action="" id="my_form">
             <input type="text" name="username" placeholder="Username"><br>
             <input type="text" name="email" placeholder="Email"><br>
@@ -18,7 +19,7 @@
             </div>
             <input type="password" name="password" placeholder="Password"><br>
             <input type="password" name="password2" placeholder="Retype Password"><br>
-            <input type="button" value="Signup" id="signup_btn"><br>
+            <input type="button" value="Sign Up" id="signup_btn"><br>
         </form>
     </div>
     <script src="index.js"></script>
