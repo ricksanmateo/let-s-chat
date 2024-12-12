@@ -9,12 +9,12 @@
 <body>
     <div id="wrapper">
         <div id="left_pannel">
-            <div style="padding: 10px;">
-                <img class="profile_img" src="./images/user3.jpg" alt="">
+            <div id="user_info" style="padding: 10px;">
+                <img class="profile_img" src="./images/user1.jpg" alt="">
                 <br>
-                Kelly Hartman
+                <span id="user_name">Username</span>
                 <br>
-                <span class="email_add">kellyhatman@gmail.com</span>
+                <span class="user_email">email@gmail.com</span>
                 <br>
                 <br>
                 <br>
@@ -40,3 +40,38 @@
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    function _(element) {
+        return document.getElementById(element);
+    }
+
+    function get_data(find, type) {
+        var xml = new XMLHttpRequest();
+        xml.onload = function () {
+            if(xml.readyState == 4 || xml.status == 200) {
+                hadle_result(xml.responseText, type);
+            }
+        }
+        var data = {};
+        data.find = find;
+        data.type = type;
+        data = JSON.stringify(data)
+
+        xml.open("POST", "api.php", true);
+        xml.send();
+    }
+    function hadle_result(result, type) {
+        if (result.trim() != '') {
+            var obj = JSON.parse(result);
+            if (!obj.logged_in) {
+                window.location.href = "login.php";
+            } else {
+                alert(result)
+            }
+        }
+
+        alert(result);
+    }
+    get_data({}, "user_info");
+</script>
