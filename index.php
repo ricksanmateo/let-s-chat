@@ -14,7 +14,7 @@
                 <br>
                 <span id="user_name">Username</span>
                 <br>
-                <span class="user_email">email@gmail.com</span>
+                <span id="user_email">email@gmail.com</span>
                 <br>
                 <br>
                 <br>
@@ -22,9 +22,9 @@
                     <label for="radio_chat"><img src="./icons/chat.png" alt=""></label>
                     <label for="radio_contacts"><img src="./icons/contacts.png" alt=""></label>
                     <label for="radio_settings"><img src="./icons/settings.png" alt=""></label>
+                </div>
             </div>
-            </div>
-            
+            <input type="button" value="Logout" id="logout_btn">
         </div>
         <div id="right_pannel">
             <div id="header">Let's Chat</div>
@@ -46,11 +46,14 @@
         return document.getElementById(element);
     }
 
+    var logout = _("logout_btn");
+    logout.addEventListener("click", logout_user);
+
     function get_data(find, type) {
         var xml = new XMLHttpRequest();
         xml.onload = function () {
             if(xml.readyState == 4 || xml.status == 200) {
-                hadle_result(xml.responseText, type);
+                handle_result(xml.responseText, type);
             }
         }
         var data = {};
@@ -61,17 +64,29 @@
         xml.open("POST", "api.php", true);
         xml.send();
     }
-    function hadle_result(result, type) {
+    function handle_result(result, type) {
+        // alert(result);
+        // echo(result);
         if (result.trim() != '') {
             var obj = JSON.parse(result);
-            if (!obj.logged_in) {
+            if (typeof(obj.logged_in) != 'undefined' && !obj.logged_in) {
                 window.location.href = "login.php";
             } else {
-                alert(result)
+                switch(result.data_type) {
+                    case 'user_info':
+                        _("user_name").innerHTML = obj.username;
+                        _("user_email").innerHTML = obj.email;
+                        break;
+                    case 'contacts':
+                        break;
+                }
             }
         }
-
-        alert(result);
     }
+
+    function logout_user() {
+        get_data({}, "logout");
+    }
+
     get_data({}, "user_info");
 </script>

@@ -147,7 +147,7 @@ form {
 
 input[type="text"],
 input[type="password"],
-input[type="button"] {
+input[type="submit"] {
   padding: 10px;
   margin: 10px;
   width: 98%;
@@ -155,7 +155,7 @@ input[type="button"] {
   border: solid 1px grey;
 }
 
-input[type="button"] {
+input[type="submit"] {
   cursor: pointer;
   background-color: #3a68a4;
   color: #f3f3f3;

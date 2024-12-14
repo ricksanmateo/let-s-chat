@@ -23,6 +23,8 @@ if (isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == 'signup') {
     include './includes/signup.php';
 } elseif (isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == 'login') {
     include './includes/login.php';
+} elseif (isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == 'logout') {
+    include './includes/logout.php';
 } elseif (isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == 'user_info') {
-    echo '';
+    include './includes/user_info.php';
 }

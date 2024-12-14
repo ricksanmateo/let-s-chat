@@ -15,11 +15,11 @@
             
             <input type="password" name="password" placeholder="Password"><br>
     
-            <input type="button" value="Login" id="login_btn"><br>
+            <input type="submit" value="Login" id="login_btn"><br>
         </form>
     </div>
     <script type="text/javascript">
-        function _(element) {
+function _(element) {
   return document.getElementById(element);
 }
 
@@ -27,11 +27,12 @@ const login_button = _("login_btn");
 login_button.addEventListener("click", collect_data);
 
 function collect_data() {
-    login_button.disabled = true;
-    login_button.value = "Please wait...";
+  e.preventDefault();
+  login_button.disabled = true;
+  login_button.value = "Please wait...";
 
   const my_form = _("my_form");
-  const inputs = my_form.getElementsByTagName("input");
+  const inputs = my_form.getElementsByTagName("INPUT");
 
   var data = {};
   for (let i = inputs.length - 1; i >= 0; i--) {
@@ -69,12 +70,12 @@ function send_data(data, type) {
 
 function handle_result(result) {
   var data = JSON.parse(result);
-  if (data.data_type == "error") {
+  if (data.data_type == "info") {
+    window.location.href = "index.php";
+  } else {
     var error = _("error");
     error.innerHTML = data.message;
     error.style.display = "block";
-  } else {
-    window.location.href = "index.php";
   }
 }
 
